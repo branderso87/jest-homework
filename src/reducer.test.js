@@ -18,7 +18,7 @@
 //     })
 // })
 import reducer from './reducer'
-import {createTodo} from './actions'
+import {createTodo, filterTodos, toggleTodo} from './actions'
 
 describe('CREATE_TODO', function () {
   test('creates a new todo', function () {
@@ -34,5 +34,16 @@ describe('CREATE_TODO', function () {
        done: false,
        text: 'Test'
      })
+  })
+})
+describe('FILTER_TODOS', () => {
+  test('filter', () => {
+    const initialState = {
+      todos: [],
+      nextId: 1,
+      done: false
+    }
+    const state = reducer(initialState, filterTodos('completed'))
+    expect(state.filter).toEqual('completed')
   })
 })
